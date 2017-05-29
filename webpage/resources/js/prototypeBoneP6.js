@@ -1,3 +1,6 @@
+// Config
+let URLServer = 'http://37.139.0.36:8080/persons'
+
 // Global vars
 /*
  * filteredData is an array containing a sub-set of person-objects that has been filtered by
@@ -19,7 +22,7 @@ var personLookup = {};
  * that is used in dataManip.js.
  * 0 is linear distribution, 1 is normalDistribution20, 2 is normalDistribution5
  */
-var ottoType = 0; // TODO Change name
+var ottoType = 0;
 
 var outType = '-1'
 
@@ -68,7 +71,7 @@ function update(){
 
 function loadFromDB(callback){
 	$.ajax({
-		url: 'http://37.139.0.36:8080/persons',
+		url: URLServer,
 		type: 'GET',
 		dataType: 'json',
 		success: function(data) {

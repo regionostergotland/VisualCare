@@ -1,3 +1,6 @@
+// Config
+let URLServer = 'http://37.139.0.36:8080/persons'
+
 // Global vars
 /*
  * filteredData is an array containing a sub-set of person-objects that has been filtered by
@@ -116,7 +119,7 @@ function update(){
 
 function loadFromDB(callback){
 	$.ajax({
-		url: 'http://37.139.0.36:8080/persons',
+		url: URLServer,
 		type: 'GET',
 		dataType: 'json',
 		success: function(data) {
