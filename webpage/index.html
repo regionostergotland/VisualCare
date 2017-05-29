@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Visualisering av vårdflöden</title>
+	<!-- CSS -->
+	<link href="/resources/CSS/bootstrap.min.css" rel="stylesheet">
+	<link href="/resources/CSS/style.css" rel="stylesheet" type="text/css">
+
+	<script src="/resources/js/jquery.min.js"></script>
+	<script src="/resources/js/d3.v4.min.js"></script>
+</head>
+
+<body>
+	<div class="topnav" id="myTopnav">
+		<a href="#" onclick="openNav()"><span style="cursor:pointer">&#9776;</span></a>
+		<img src="/resources/images/logo_region.png"/>
+		<a href="index.html">Hem</a>
+		<a href="index.html">Om</a>
+		<a href="index.html">Kontakt</a>
+	</div>
+	<div id="mySidenav" class="sidenav sidenav">
+		<div id="getSideNav"></div>
+	</div>
+	<div id="main">
+		<div class="container">
+			<!-- Page Header -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-body" style="width: 100%;">
+							<h1>Visual care</h1>
+							<p>Visual Care är en produkt för visualisering av vårddata från Region Östergötland. Produkten innehåller ett antal prototyper som visualiserar data.</p>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-body" style="width: 100%;">
+							<div id="prototypeResponse"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/resources/js/menu.js"></script>
+	<script src="/resources/js/prototypes.js"></script>
+	<script>
+		setMenuHtml(false);
+		printPrototypes();
+	</script>
+</body>
+
+</html>

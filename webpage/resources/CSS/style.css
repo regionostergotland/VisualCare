@@ -1,0 +1,223 @@
+html, body {
+	height: 100%;
+	background: url(/resources/images/bg/cream_dust.png) repeat 0 0;
+}
+
+#svg-Container {
+
+}
+
+.area:hover {
+	background-color: red;
+}
+
+.line {
+	fill: none;
+	stroke: steelblue;
+	stroke-width: 2px;
+}
+
+#map {
+	margin: 0;
+	padding: 0;
+	height: 400px;
+	width: 100%;
+	margin-top: 10px;
+}
+
+#settingDiv {
+	font-size: 13px;
+	padding: 20px;
+}
+
+#settingHolder {
+	margin-bottom: 20px;
+}
+
+#settingTitle {
+	margin-bottom: 10px;
+	font-size: 18px;
+}
+
+.topnav {
+	/*background-color: #333;*/
+	background-color: #0066B3;
+	overflow: hidden;
+	top: 0;
+	z-index: 100;
+	position: fixed;
+	width: 100%;
+}
+
+
+/* Style the links inside the navigation bar */
+
+.topnav a {
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+	height: 50px;
+}
+
+.topnav img {
+	float: left;
+	display: block;
+	height: 50px;
+	padding-left: 20px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-right: 18px;
+}
+
+
+/* Change the color of links on hover */
+
+.topnav a:hover {
+	background-color: #02497f;
+}
+
+
+/* Add a color to the active/current link */
+
+.topnav a.active {
+	color: white;
+}
+
+.sidenav {
+	height: 100%;
+	/* 100% Full-height */
+	width: 0;
+	/* 0 width - change this with JavaScript */
+	position: fixed;
+	/* Stay in place */
+	z-index: 4;
+	/* Stay on top */
+	top: 0;
+	/*left: 0;*/
+	background-color: #efefef;
+	color: #474747;
+	/* Black*/
+	overflow-x: hidden;
+	/* Disable horizontal scroll */
+	padding-top: 100px;
+	/*margin-top: 50px;*/
+	/* Place content 60px from the top */
+	transition: 0.5s;
+	/* 0.5 second transition effect to slide in the sidenav */
+}
+
+
+/* The navigation menu links */
+
+.sidenav.sidesetting {
+	right: 0;
+}
+
+.sidenav.sidemenu {
+	left: 0;
+}
+
+.sidenav .protoContainer {
+	padding: 10px;
+}
+
+.sidenav .item {
+	/*background-color: #cccccc;*/
+	padding-top: 15px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 18px;
+}
+
+.sidenav .item img {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	background-color: #bcbcbc;
+	padding: 3px;
+	height: 100px;
+	border: 1px solid #021a40;
+}
+
+.sidenav .item img:hover {
+	opacity: 0.5;
+	background-color: #9ba2ff;
+	transition: .5s ease;
+}
+
+.sidenav .descText {
+	position: absolute;
+	top: 52px;
+	padding: 5px;
+	margin-left: 10px;
+	font-size: 25px;
+	color: #3f3f3f;
+}
+
+.sidenav .closebtn {
+	position: absolute;
+	top: 55px;
+	font-size: 36px;
+	margin-left: 68px;
+	text-decoration: none;
+	font-size: 30px;
+	color: #818181;
+	display: block;
+	transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus {
+	color: #bcbcbc;
+}
+
+
+/*.sidenav a {
+		padding: 8px 8px 8px 32px;
+		text-decoration: none;
+		font-size: 25px;
+		color: #818181;
+		display: block;
+		transition: 0.3s
+}*/
+
+
+/* When you mouse over the navigation links, change their color */
+
+
+/*
+.sidenav a:hover,
+.offcanvas a:focus {
+		color: #f1f1f1;
+}*/
+
+
+/* Position and style the close button (top right corner) */
+
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+
+#main {
+	transition: margin-left .5s;
+	padding: 20px;
+	margin-top: 50px;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
+	}
+}
+
+.piechart1 {
+	margin: 0 auto;
+}

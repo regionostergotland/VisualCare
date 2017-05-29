@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Visualisering av vårdflöden</title>
+	<!-- CSS -->
+	<link href="/resources/CSS/bootstrap.min.css" rel="stylesheet">
+	<link href="/resources/CSS/style.css" rel="stylesheet" type="text/css">
+	<link href="/resources/CSS/nouislider.min.css" rel="stylesheet">
+	<link href="/resources/CSS/D3.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+
+	<script src="/resources/js/jquery.min.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<!--<script src="/resources/js/localLinks.js"></script> -->
+</head>
+
+<body>
+	<div class="topnav" id="myTopnav">
+		<a href="#" onclick="openNav()"><span style="cursor:pointer">&#9776;</span></a>
+		<img src="/resources/images/logo_region.png" />
+		<a href="index.html">Hem</a>
+		<a href="index.html">Om</a>
+		<a href="index.html">Kontakt</a>
+		<a href="#" onclick="openSetting()" style="float:right;"><span style="font-size:1.2em;" class="glyphicon glyphicon-cog"></span></a>
+	</div>
+	<div id="mySidenav" class="sidenav sidenav" style="width: 250px;">
+			<div id="getSideNav">
+				<a href="javascript:void(0)" class="closebtn" style="right:25px;" onclick="closeNav()">×</a>
+				<div class="descText">Prototyper</div>
+				<div class="protoContainer">
+					<div class="item">
+						<a href="/prototype.html?prototype=0">
+							<img src="/resources/images/protoAlder.png">
+						</a>
+					Statistik</div>
+					<div class="item">
+						<a href="/prototype.html?prototype=3"><img src="/resources/images/protoScatter.png"></a>
+						Sambandsdiagram
+					</div>
+					<div class="item">
+						<a href="/prototype.html?prototype=5">
+							<img src="/resources/images/proto4.png">
+						</a>Sambandsdiagram med grafer</div></div></div>
+		</div>
+	<div id="settings" class="sidenav sidesetting">
+		<a href="javascript:void(0)" class="closebtn" style="left:-50px;" onclick="closeSetting()">&times;</a>
+		<div id="settingDiv">
+			<div id="settingHolder">
+				<div id="settingTitle">Välj distributionstyp:</div>
+				<div class="form-group">
+					<select class="form-control" id="distType" onchange="setDistType()">
+						<option value="0">Linjär</option>
+						<option value="1">Normal20</option>
+						<option value="2">Normal50</option>
+					</select>
+				</div>
+			</div>
+			<div id="settingHolder">
+				<div id="settingTitle">Välj Kommun/stadsdel</div>
+				<div class="form-group">
+					<select class="form-control" id="sel1">
+						<option>Alla</option>
+						<option>Linköping</option>
+						<option>Åtvidaberg</option>
+						<option>Ryd</option>
+					</select>
+				</div>
+			</div>
+			<div id="settingHolder">
+				<div id="settingTitle">Ingångstyp: </div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default" id="vjvkButton" onclick="updateKVA('BOTH')">Båda</button>
+					<button type="button" class="btn btn-default" id="vjButton" onclick="updateKVA('VJ110')">VJ110</button>
+					<button type="button" class="btn btn-default" id="vkButton" onclick="updateKVA('VK110')">VK110</button>
+				</div>
+			</div>
+			<div id="settingHolder">
+				<div id="settingTitle">Utgångstyp:</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default" id="utAlla" onclick="updateOut('All')">Alla</button>
+					<button type="button" class="btn btn-default" id="ut-1" onclick="updateOut('-1')">-1</button>
+				</div>
+			</div>
+			<div id="settingHolder">
+				<div id="settingTitle">Kön:</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default" id="sexBothButton" onclick="updateSex('BOTH')">Alla</button>
+					<button type="button" class="btn btn-default" id="sexMenButton" onclick="updateSex('MEN')">Män</button>
+					<button type="button" class="btn btn-default" id="sexWomenButton" onclick="updateSex('WOMEN')">Kvinnor</button>
+				</div>
+			</div>
+			<div id="settingHolder">
+				<div id="settingTitle">Ålder:</div>
+				<div id="slider-age" style="margin-left:15px; margin-right:15px;"></div>
+				<div style="margin-top:10px;margin-left:10px; margin-right: 10px;">
+					<div style="float:left;">
+						<div id="a1"></div>
+					</div>
+					<div style="float:right;">
+						<div id="a2"></div>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+			</div>
+			<div id="settingHolder">
+				<div id="settingTitle">Download SVG</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default" onclick="downloadSVG()">Download</button>
+				</div>
+			</div>
+			<div id="settingHolder">
+				<div id="settingTitle">Update data with XLSX-file</div>
+				<input id="fileSelect" type="file" class="file" data-show-preview="false">
+		</div>
+
+
+		</div>
+	</div>
+	<div id="main">
+		<div class="container-fluid" style ="min-width: 800px;">
+			<div class="row">
+				<div class="panel panel-default" >
+					<div class="panel-body" style="width: 100%;">
+						<h1 class="text-center">Visualisering av vårdprocesser</h1>
+						<br />
+						<div id="barList" class="form-group" style="display:none; float: right; width: 200px;">
+							<select class="form-control" id="barChooser" onchange="setBarType()">
+								<option value="0">Ålder</option>
+								<option value="1">Kön</option>
+							</select>
+						</div>
+						<div style="clear: both;"></div>
+						<div id="svg-Container">
+							<div id ="grafinfo"></div>
+							<div class="row">
+									<div id="piechart1"></div>
+									<div id="piechart2"></div>
+									<div id="slider-date" style="margin: 0 auto; width: 700px;"></div>
+									<br />
+									<div style="width: 700px; margin: 0 auto;">
+										<div style="float:left;">
+											<div id="d1"></div>
+										</div>
+										<div style="float:right;">
+											<div id="d2"></div>
+										</div>
+										<div style="clear: both;"></div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="panel" width="1400" height="50"></div>
+		<!-- Script imports -->
+		<!--<script src="/resources/js/localLinks.js"></script>-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
+		<script src="/resources/js/nouislider.min.js"></script>
+		<script src="/resources/js/graficUpdate.js"></script>
+		<script src="/resources/js/menu.js"></script>
+		<script src="/resources/js/prototypes.js"></script>
+		<script src="/resources/js/prototypeBoneP6.js"></script>
+		<script src="/resources/js/dataManip.js"></script>
+		<script src="/resources/js/xlsx.core.min.js"></script>
+		<script src="/resources/js/xlsx.js"></script>
+		<script src="/resources/js/p6.js"></script>
+		<script>
+			// On load
+			openSetting();
+			//setMenuHtml(true);
+			updateButtons();
+
+			function afterDBLoad() {
+				setMinMaxDate(); // Should not be here
+				initSlider();
+				filterData();
+				drawData6();
+			}
+			loadFromDB(afterDBLoad); // Should not be here
+			//setTopNavHtml(true);
+		</script>
+	</div>
+</body>
+
+</html>

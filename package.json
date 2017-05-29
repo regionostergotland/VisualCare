@@ -1,0 +1,40 @@
+{
+  "devDependencies": {
+    "addTimeout": "^0.4.0",
+    "chai": "^3.5.0",
+    "config-extend": "^0.1.1",
+    "execsql": "0.0.3",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "path": "^0.12.7",
+    "require-extension": "0.0.4",
+    "should": "^11.2.0",
+    "connect": "^3.4.0",
+    "serve-static": "^1.12.0"
+  },
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha",
+    "start": "node nodeserver.js"
+  },
+  "name": "Visualisering",
+  "version": "0.1.0",
+  "main": "nodeJSServer.js",
+  "homepage": "localhost:8080/dash.html",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.ida.liu.se/tddd96-grupp5/Visualisering-vardprocesser.git"
+  },
+  "description": "Bachelor degree project concerning visualisation of data",
+  "contributors": [
+    {
+      "name": "Victor Bennich",
+      "email": "vicbe572@student.liu.se",
+      "title": "Test leader"
+    },
+    {
+      "name": "test",
+      "email": "test@test.se"
+    }
+  ]
+}
